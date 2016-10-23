@@ -2,14 +2,15 @@ package com.example.qeto.retrofit.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by QETO on 10/21/2016.
  */
-public class Movie {
-
+public class Movie implements Serializable {
+        @SuppressWarnings("serial")
         @SerializedName("id")
         private int id;
 

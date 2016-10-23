@@ -22,9 +22,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     private ArrayList<Movie> movies;
     String ImagePath;
+    RecyclerItemClickListener listener;
 
-    public MovieAdapter(ArrayList<Movie> movies) {
+    public MovieAdapter(ArrayList<Movie> movies, RecyclerItemClickListener listener) {
         this.movies = movies;
+        this.listener = listener;
     }
 
     @Override
@@ -35,10 +37,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(MovieAdapter.ViewHolder holder, int position) {
-//        holder.imageView.setImageResource(movies.get(position).getPosterPath());
         holder.textViewTitle.setText(movies.get(position).getTitle());
-
-         ImagePath = Constants.Image_URL+movies.get(position).getPosterPath().toString();
+        holder.textViewRating.setText("Rating: " + movies.get(position).getVoteAverage());
+        ImagePath = Constants.Image_URL + movies.get(position).getPosterPath().toString();
         Context context = holder.imageView.getContext();
         Picasso.with(context).load(ImagePath).into(holder.imageView);
 
@@ -51,16 +52,24 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     }
 
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView imageView;
-        TextView textViewTitle;
+        TextView textViewTitle, textViewRating;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             imageView = (ImageView) itemView.findViewById(R.id.imageView);
             textViewTitle = (TextView) itemView.findViewById(R.id.textViewTitle);
+            textViewRating = (TextView) itemView.findViewById(R.id.textViewRating);
+        }
 
+        @Override
+        public void onClick(View v) {
+            if (listener != null) {
+                listener.onItemClicked(getAdapterPosition());
+            }
         }
     }
 }

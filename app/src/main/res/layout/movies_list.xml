@@ -23,19 +23,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="back"/>
-        <View
+            android:id="@+id/buttonBack"
+            android:background="@mipmap/back"/>
+
+        <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:id="@+id/buttonBack"></View>
-        <Button
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:textAlignment="center"/>
+
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="forward"
-            android:id="@+id/buttonForward"/>
+            android:id="@+id/buttonForward"
+            android:background="@mipmap/forward"/>
     </LinearLayout>
 </LinearLayout>
